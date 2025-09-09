@@ -1,0 +1,14 @@
+---
+
+-hosts: all
+ become: True
+ tasks:
+ -name: Install apache on ubuntu
+  apt: name=apache2 state=present
+  when: ansible_os_family == "Debian"
+  ignore_error: True
+
+ -name: Install httpd on RedHat
+  apt: name=httpd state=present
+  when: ansible_os_family == "RedHat"
+  ignore_error: True
